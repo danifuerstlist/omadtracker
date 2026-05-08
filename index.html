@@ -1,1066 +1,1046 @@
+<!DOCTYPE html>
 
-<html>
+<html lang="de">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.7px 'Helvetica Neue'; color: #191919; -webkit-text-stroke: #191919}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.7px 'Helvetica Neue'; color: #191919; -webkit-text-stroke: #191919; min-height: 17.0px}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.7px 'Helvetica Neue'; color: #0b61ca; -webkit-text-stroke: #0b61ca}
-    span.s1 {font-kerning: none}
-    span.s2 {font-kerning: none; color: #191919; -webkit-text-stroke: 0px #191919}
-    span.s3 {text-decoration: underline ; font-kerning: none; color: #0b61ca; -webkit-text-stroke: 0px #0b61ca}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Wochen Fastenplan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdf8f5;
+    --surface: #fff9f6;
+    --card: #ffffff;
+    --border: #ecddd6;
+    --rose: #d4748a;
+    --rose-light: #f2b8c6;
+    --rose-pale: #fce8ee;
+    --sage: #7aab8e;
+    --sage-pale: #e4f2ea;
+    --lavender: #9b8ec4;
+    --lavender-pale: #ece8f7;
+    --peach: #e89c72;
+    --peach-pale: #fceee5;
+    --muted: #b09898;
+    --text: #4a3535;
+    --text-light: #7a6060;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+padding: 0 0 80px;
+}
+
+/* HERO */
+.hero {
+background: linear-gradient(135deg, #fce8ee 0%, #ece8f7 50%, #e4f2ea 100%);
+border-bottom: 1px solid var(–border);
+padding: 52px 24px 40px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.hero::before {
+content: ‘🌸’;
+position: absolute;
+top: 16px; left: 20px;
+font-size: 40px;
+opacity: 0.35;
+}
+.hero::after {
+content: ‘✿’;
+position: absolute;
+bottom: 16px; right: 20px;
+font-size: 32px;
+opacity: 0.3;
+color: var(–lavender);
+}
+.hero-eyebrow {
+font-size: 10px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–rose);
+margin-bottom: 12px;
+font-weight: 500;
+}
+.hero-title {
+font-family: ‘Fraunces’, serif;
+font-size: clamp(28px, 7vw, 46px);
+font-weight: 600;
+color: var(–text);
+line-height: 1.15;
+margin-bottom: 8px;
+}
+.hero-title em { color: var(–rose); font-style: italic; font-weight: 300; }
+.hero-sub {
+font-size: 12px;
+color: var(–text-light);
+letter-spacing: 0.5px;
+}
+
+/* STATS BAR */
+.stats-bar {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+border-bottom: 1px solid var(–border);
+background: var(–card);
+}
+.stat {
+padding: 16px 10px;
+text-align: center;
+border-right: 1px solid var(–border);
+}
+.stat:last-child { border-right: none; }
+.stat-value {
+font-size: 20px;
+font-weight: 500;
+color: var(–rose);
+display: block;
+font-family: ‘Fraunces’, serif;
+}
+.stat-label {
+font-size: 9px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 3px;
+display: block;
+}
+
+/* TABS */
+.tabs {
+display: flex;
+border-bottom: 1px solid var(–border);
+overflow-x: auto;
+scrollbar-width: none;
+background: var(–card);
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+flex-shrink: 0;
+padding: 14px 20px;
+font-size: 11px;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: var(–muted);
+cursor: pointer;
+border-bottom: 2px solid transparent;
+transition: all 0.2s;
+white-space: nowrap;
+font-weight: 500;
+}
+.tab.active {
+color: var(–rose);
+border-bottom-color: var(–rose);
+}
+
+/* CONTENT */
+.content { padding: 24px 16px; max-width: 600px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* WEEK CARD */
+.week-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+margin-bottom: 14px;
+overflow: hidden;
+box-shadow: 0 2px 12px rgba(212,116,138,0.06);
+}
+.week-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 16px 18px;
+border-bottom: 1px solid var(–border);
+background: linear-gradient(135deg, #fff9f6 0%, #fdf8fe 100%);
+}
+.week-num {
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–rose);
+font-weight: 500;
+}
+.week-label {
+font-size: 15px;
+color: var(–text);
+margin-top: 2px;
+font-family: ‘Fraunces’, serif;
+font-weight: 600;
+}
+.week-badge {
+font-size: 9px;
+padding: 4px 10px;
+border-radius: 20px;
+letter-spacing: 1px;
+text-transform: uppercase;
+font-weight: 500;
+}
+.badge-easy { background: var(–sage-pale); color: var(–sage); }
+.badge-medium { background: var(–lavender-pale); color: var(–lavender); }
+.badge-hard { background: var(–peach-pale); color: var(–peach); }
+
+.week-body { padding: 16px 18px; }
+
+.day-row {
+display: grid;
+grid-template-columns: 90px 1fr auto;
+align-items: center;
+gap: 8px;
+padding: 9px 0;
+border-bottom: 1px solid #f5ece8;
+font-size: 12px;
+}
+.day-row:last-child { border-bottom: none; }
+.day-name { color: var(–muted); letter-spacing: 0.5px; font-weight: 500; }
+.day-type { font-size: 11px; color: var(–text-light); }
+.day-icon { font-size: 16px; }
+
+.fasting-pill {
+display: inline-block;
+font-size: 9px;
+padding: 3px 9px;
+border-radius: 20px;
+letter-spacing: 1px;
+text-transform: uppercase;
+font-weight: 500;
+}
+.pill-omad { background: var(–rose-pale); color: var(–rose); }
+.pill-2meal { background: var(–sage-pale); color: var(–sage); }
+.pill-normal { background: #f0ebe8; color: var(–muted); }
+
+.week-tip {
+margin-top: 12px;
+padding: 10px 14px;
+background: var(–lavender-pale);
+border-left: 3px solid var(–lavender);
+border-radius: 0 8px 8px 0;
+font-size: 11px;
+color: var(–lavender);
+line-height: 1.6;
+}
+
+/* MINDSET */
+.mindset-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 22px;
+margin-bottom: 14px;
+box-shadow: 0 2px 12px rgba(212,116,138,0.05);
+}
+.mindset-title {
+font-family: ‘Fraunces’, serif;
+font-size: 19px;
+color: var(–rose);
+margin-bottom: 10px;
+font-weight: 600;
+}
+.mindset-text {
+font-size: 13px;
+line-height: 1.8;
+color: var(–text-light);
+}
+.mindset-quote {
+font-family: ‘Fraunces’, serif;
+font-style: italic;
+font-size: 15px;
+color: var(–text);
+border-left: 3px solid var(–rose-light);
+padding-left: 16px;
+margin: 18px 0;
+line-height: 1.7;
+font-weight: 300;
+}
+.principle-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+margin-top: 12px;
+}
+.principle {
+background: var(–bg);
+border: 1px solid var(–border);
+padding: 14px;
+border-radius: 12px;
+}
+.principle-num {
+font-size: 22px;
+font-weight: 600;
+color: var(–rose-light);
+font-family: ‘Fraunces’, serif;
+}
+.principle-text {
+font-size: 11px;
+color: var(–text);
+margin-top: 4px;
+line-height: 1.5;
+}
+
+/* TRACKER */
+.tracker-week {
+margin-bottom: 24px;
+}
+.tracker-week-title {
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–rose);
+margin-bottom: 10px;
+font-weight: 500;
+}
+.tracker-days {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 6px;
+}
+.tracker-day {
+aspect-ratio: 1;
+border: 1px solid var(–border);
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.2s;
+font-size: 9px;
+color: var(–muted);
+text-transform: uppercase;
+letter-spacing: 0.5px;
+position: relative;
+background: var(–card);
+box-shadow: 0 1px 4px rgba(212,116,138,0.04);
+}
+.tracker-day span { font-size: 14px; margin-bottom: 2px; }
+.tracker-day.done-omad { border-color: var(–rose-light); background: var(–rose-pale); color: var(–rose); }
+.tracker-day.done-2meal { border-color: #a8d4b8; background: var(–sage-pale); color: var(–sage); }
+.tracker-day.done-normal { border-color: #ddd; background: #f5f0ee; color: #bbb; }
+.tracker-day.future { opacity: 0.35; cursor: not-allowed; }
+
+.tracker-legend {
+display: flex;
+gap: 14px;
+margin-bottom: 18px;
+flex-wrap: wrap;
+}
+.legend-item {
+display: flex;
+align-items: center;
+gap: 7px;
+font-size: 11px;
+color: var(–text-light);
+}
+.legend-dot {
+width: 10px; height: 10px; border-radius: 3px;
+}
+.dot-omad { background: var(–rose-light); }
+.dot-2meal { background: var(–sage); opacity: 0.7; }
+.dot-normal { background: #ccc; }
+
+/* WEIGHT */
+.weight-section { margin-bottom: 24px; }
+.weight-title {
+font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+color: var(–rose); margin-bottom: 12px; font-weight: 500;
+}
+.weight-input-row {
+display: flex; gap: 8px; margin-bottom: 8px;
+}
+.weight-input-row input {
+flex: 1;
+background: var(–card);
+border: 1.5px solid var(–border);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 14px;
+padding: 11px 14px;
+border-radius: 12px;
+outline: none;
+}
+.weight-input-row input:focus { border-color: var(–rose-light); }
+.btn-gold {
+background: linear-gradient(135deg, var(–rose) 0%, #c45c78 100%);
+color: #fff;
+border: none;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 11px;
+letter-spacing: 1px;
+text-transform: uppercase;
+padding: 11px 18px;
+border-radius: 12px;
+cursor: pointer;
+font-weight: 500;
+box-shadow: 0 3px 12px rgba(212,116,138,0.3);
+}
+.weight-log {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 14px;
+overflow: hidden;
+box-shadow: 0 2px 10px rgba(212,116,138,0.05);
+}
+.weight-entry {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 11px 16px;
+border-bottom: 1px solid #f0e8e4;
+font-size: 13px;
+}
+.weight-entry:last-child { border-bottom: none; }
+.weight-kg { color: var(–rose); font-weight: 500; font-family: ‘Fraunces’, serif; }
+.weight-diff { font-size: 11px; }
+.diff-down { color: var(–sage); }
+.diff-up { color: var(–peach); }
+
+/* PROGRESS BAR */
+.progress-bar-wrap {
+background: linear-gradient(135deg, var(–rose-pale) 0%, var(–lavender-pale) 100%);
+border: 1px solid var(–border);
+border-radius: 14px;
+padding: 18px;
+margin-bottom: 16px;
+}
+.progress-label {
+display: flex;
+justify-content: space-between;
+font-size: 11px;
+color: var(–text-light);
+letter-spacing: 0.5px;
+margin-bottom: 10px;
+}
+.progress-track {
+height: 8px;
+background: rgba(212,116,138,0.15);
+border-radius: 10px;
+overflow: hidden;
+}
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–rose-light), var(–rose));
+border-radius: 10px;
+transition: width 0.6s ease;
+}
+
+.section-divider {
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–rose);
+margin: 28px 0 14px;
+display: flex;
+align-items: center;
+gap: 10px;
+font-weight: 500;
+}
+.section-divider::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–border);
+}
+
+.modal-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(74,53,53,0.4);
+backdrop-filter: blur(6px);
+z-index: 100;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 20px;
+padding: 26px;
+max-width: 320px;
+width: 100%;
+box-shadow: 0 20px 60px rgba(212,116,138,0.15);
+}
+.modal-title { font-family: ‘Fraunces’, serif; font-size: 18px; margin-bottom: 8px; color: var(–text); font-weight: 600; }
+.modal-text { font-size: 12px; color: var(–text-light); line-height: 1.7; margin-bottom: 16px; }
+.modal-btns { display: flex; gap: 8px; }
+.btn-ghost {
+flex: 1;
+background: transparent;
+border: 1.5px solid var(–border);
+color: var(–muted);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 12px;
+padding: 10px;
+border-radius: 12px;
+cursor: pointer;
+}
+.select-row {
+display: flex;
+gap: 8px;
+margin-bottom: 16px;
+}
+.select-btn {
+flex: 1;
+padding: 12px 4px;
+border-radius: 12px;
+border: 1.5px solid var(–border);
+background: var(–bg);
+color: var(–muted);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 11px;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.2s;
+text-align: center;
+font-weight: 500;
+}
+.select-btn.sel-omad { border-color: var(–rose-light); background: var(–rose-pale); color: var(–rose); }
+.select-btn.sel-2meal { border-color: #a8d4b8; background: var(–sage-pale); color: var(–sage); }
+.select-btn.sel-normal { border-color: #ccc; background: #f5f0ee; color: #aaa; }
+
+/* special mindset highlight card */
+.mindset-highlight {
+background: linear-gradient(135deg, var(–rose-pale) 0%, var(–lavender-pale) 100%);
+border-color: rgba(212,116,138,0.3);
+}
+</style>
+
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;html lang="de"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;title&gt;10 Wochen Fastenplan&lt;/title&gt;</span></p>
-<p class="p3"><span class="s2">&lt;link href="<a href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&amp;family=DM+Sans:wght@300;400;500&amp;display=swap"><span class="s3">https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&amp;family=DM+Sans:wght@300;400;500&amp;display=swap</span></a>" rel="stylesheet"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;style&gt;</span></p>
-<p class="p1"><span class="s1">  :root {</span></p>
-<p class="p1"><span class="s1">    --bg: #fdf8f5;</span></p>
-<p class="p1"><span class="s1">    --surface: #fff9f6;</span></p>
-<p class="p1"><span class="s1">    --card: #ffffff;</span></p>
-<p class="p1"><span class="s1">    --border: #ecddd6;</span></p>
-<p class="p1"><span class="s1">    --rose: #d4748a;</span></p>
-<p class="p1"><span class="s1">    --rose-light: #f2b8c6;</span></p>
-<p class="p1"><span class="s1">    --rose-pale: #fce8ee;</span></p>
-<p class="p1"><span class="s1">    --sage: #7aab8e;</span></p>
-<p class="p1"><span class="s1">    --sage-pale: #e4f2ea;</span></p>
-<p class="p1"><span class="s1">    --lavender: #9b8ec4;</span></p>
-<p class="p1"><span class="s1">    --lavender-pale: #ece8f7;</span></p>
-<p class="p1"><span class="s1">    --peach: #e89c72;</span></p>
-<p class="p1"><span class="s1">    --peach-pale: #fceee5;</span></p>
-<p class="p1"><span class="s1">    --muted: #b09898;</span></p>
-<p class="p1"><span class="s1">    --text: #4a3535;</span></p>
-<p class="p1"><span class="s1">    --text-light: #7a6060;</span></p>
-<p class="p1"><span class="s1">  }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">- { margin: 0; padding: 0; box-sizing: border-box; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">body {</span></p>
-<p class="p1"><span class="s1">background: var(–bg);</span></p>
-<p class="p1"><span class="s1">color: var(–text);</span></p>
-<p class="p1"><span class="s1">font-family: ‘DM Sans’, sans-serif;</span></p>
-<p class="p1"><span class="s1">min-height: 100vh;</span></p>
-<p class="p1"><span class="s1">padding: 0 0 80px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* HERO */</span></p>
-<p class="p1"><span class="s1">.hero {</span></p>
-<p class="p1"><span class="s1">background: linear-gradient(135deg, #fce8ee 0%, #ece8f7 50%, #e4f2ea 100%);</span></p>
-<p class="p1"><span class="s1">border-bottom: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">padding: 52px 24px 40px;</span></p>
-<p class="p1"><span class="s1">text-align: center;</span></p>
-<p class="p1"><span class="s1">position: relative;</span></p>
-<p class="p1"><span class="s1">overflow: hidden;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.hero::before {</span></p>
-<p class="p1"><span class="s1">content: ‘🌸’;</span></p>
-<p class="p1"><span class="s1">position: absolute;</span></p>
-<p class="p1"><span class="s1">top: 16px; left: 20px;</span></p>
-<p class="p1"><span class="s1">font-size: 40px;</span></p>
-<p class="p1"><span class="s1">opacity: 0.35;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.hero::after {</span></p>
-<p class="p1"><span class="s1">content: ‘✿’;</span></p>
-<p class="p1"><span class="s1">position: absolute;</span></p>
-<p class="p1"><span class="s1">bottom: 16px; right: 20px;</span></p>
-<p class="p1"><span class="s1">font-size: 32px;</span></p>
-<p class="p1"><span class="s1">opacity: 0.3;</span></p>
-<p class="p1"><span class="s1">color: var(–lavender);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.hero-eyebrow {</span></p>
-<p class="p1"><span class="s1">font-size: 10px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 3px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">color: var(–rose);</span></p>
-<p class="p1"><span class="s1">margin-bottom: 12px;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.hero-title {</span></p>
-<p class="p1"><span class="s1">font-family: ‘Fraunces’, serif;</span></p>
-<p class="p1"><span class="s1">font-size: clamp(28px, 7vw, 46px);</span></p>
-<p class="p1"><span class="s1">font-weight: 600;</span></p>
-<p class="p1"><span class="s1">color: var(–text);</span></p>
-<p class="p1"><span class="s1">line-height: 1.15;</span></p>
-<p class="p1"><span class="s1">margin-bottom: 8px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.hero-title em { color: var(–rose); font-style: italic; font-weight: 300; }</span></p>
-<p class="p1"><span class="s1">.hero-sub {</span></p>
-<p class="p1"><span class="s1">font-size: 12px;</span></p>
-<p class="p1"><span class="s1">color: var(–text-light);</span></p>
-<p class="p1"><span class="s1">letter-spacing: 0.5px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* STATS BAR */</span></p>
-<p class="p1"><span class="s1">.stats-bar {</span></p>
-<p class="p1"><span class="s1">display: grid;</span></p>
-<p class="p1"><span class="s1">grid-template-columns: repeat(4, 1fr);</span></p>
-<p class="p1"><span class="s1">border-bottom: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.stat {</span></p>
-<p class="p1"><span class="s1">padding: 16px 10px;</span></p>
-<p class="p1"><span class="s1">text-align: center;</span></p>
-<p class="p1"><span class="s1">border-right: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.stat:last-child { border-right: none; }</span></p>
-<p class="p1"><span class="s1">.stat-value {</span></p>
-<p class="p1"><span class="s1">font-size: 20px;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">color: var(–rose);</span></p>
-<p class="p1"><span class="s1">display: block;</span></p>
-<p class="p1"><span class="s1">font-family: ‘Fraunces’, serif;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.stat-label {</span></p>
-<p class="p1"><span class="s1">font-size: 9px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 1.5px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">color: var(–muted);</span></p>
-<p class="p1"><span class="s1">margin-top: 3px;</span></p>
-<p class="p1"><span class="s1">display: block;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* TABS */</span></p>
-<p class="p1"><span class="s1">.tabs {</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">border-bottom: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">overflow-x: auto;</span></p>
-<p class="p1"><span class="s1">scrollbar-width: none;</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.tabs::-webkit-scrollbar { display: none; }</span></p>
-<p class="p1"><span class="s1">.tab {</span></p>
-<p class="p1"><span class="s1">flex-shrink: 0;</span></p>
-<p class="p1"><span class="s1">padding: 14px 20px;</span></p>
-<p class="p1"><span class="s1">font-size: 11px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 1px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">color: var(–muted);</span></p>
-<p class="p1"><span class="s1">cursor: pointer;</span></p>
-<p class="p1"><span class="s1">border-bottom: 2px solid transparent;</span></p>
-<p class="p1"><span class="s1">transition: all 0.2s;</span></p>
-<p class="p1"><span class="s1">white-space: nowrap;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.tab.active {</span></p>
-<p class="p1"><span class="s1">color: var(–rose);</span></p>
-<p class="p1"><span class="s1">border-bottom-color: var(–rose);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* CONTENT */</span></p>
-<p class="p1"><span class="s1">.content { padding: 24px 16px; max-width: 600px; margin: 0 auto; }</span></p>
-<p class="p1"><span class="s1">.section { display: none; }</span></p>
-<p class="p1"><span class="s1">.section.active { display: block; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* WEEK CARD */</span></p>
-<p class="p1"><span class="s1">.week-card {</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">border: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">border-radius: 16px;</span></p>
-<p class="p1"><span class="s1">margin-bottom: 14px;</span></p>
-<p class="p1"><span class="s1">overflow: hidden;</span></p>
-<p class="p1"><span class="s1">box-shadow: 0 2px 12px rgba(212,116,138,0.06);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.week-header {</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">justify-content: space-between;</span></p>
-<p class="p1"><span class="s1">align-items: center;</span></p>
-<p class="p1"><span class="s1">padding: 16px 18px;</span></p>
-<p class="p1"><span class="s1">border-bottom: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">background: linear-gradient(135deg, #fff9f6 0%, #fdf8fe 100%);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.week-num {</span></p>
-<p class="p1"><span class="s1">font-size: 10px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 2px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">color: var(–rose);</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.week-label {</span></p>
-<p class="p1"><span class="s1">font-size: 15px;</span></p>
-<p class="p1"><span class="s1">color: var(–text);</span></p>
-<p class="p1"><span class="s1">margin-top: 2px;</span></p>
-<p class="p1"><span class="s1">font-family: ‘Fraunces’, serif;</span></p>
-<p class="p1"><span class="s1">font-weight: 600;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.week-badge {</span></p>
-<p class="p1"><span class="s1">font-size: 9px;</span></p>
-<p class="p1"><span class="s1">padding: 4px 10px;</span></p>
-<p class="p1"><span class="s1">border-radius: 20px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 1px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.badge-easy { background: var(–sage-pale); color: var(–sage); }</span></p>
-<p class="p1"><span class="s1">.badge-medium { background: var(–lavender-pale); color: var(–lavender); }</span></p>
-<p class="p1"><span class="s1">.badge-hard { background: var(–peach-pale); color: var(–peach); }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.week-body { padding: 16px 18px; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.day-row {</span></p>
-<p class="p1"><span class="s1">display: grid;</span></p>
-<p class="p1"><span class="s1">grid-template-columns: 90px 1fr auto;</span></p>
-<p class="p1"><span class="s1">align-items: center;</span></p>
-<p class="p1"><span class="s1">gap: 8px;</span></p>
-<p class="p1"><span class="s1">padding: 9px 0;</span></p>
-<p class="p1"><span class="s1">border-bottom: 1px solid #f5ece8;</span></p>
-<p class="p1"><span class="s1">font-size: 12px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.day-row:last-child { border-bottom: none; }</span></p>
-<p class="p1"><span class="s1">.day-name { color: var(–muted); letter-spacing: 0.5px; font-weight: 500; }</span></p>
-<p class="p1"><span class="s1">.day-type { font-size: 11px; color: var(–text-light); }</span></p>
-<p class="p1"><span class="s1">.day-icon { font-size: 16px; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.fasting-pill {</span></p>
-<p class="p1"><span class="s1">display: inline-block;</span></p>
-<p class="p1"><span class="s1">font-size: 9px;</span></p>
-<p class="p1"><span class="s1">padding: 3px 9px;</span></p>
-<p class="p1"><span class="s1">border-radius: 20px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 1px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.pill-omad { background: var(–rose-pale); color: var(–rose); }</span></p>
-<p class="p1"><span class="s1">.pill-2meal { background: var(–sage-pale); color: var(–sage); }</span></p>
-<p class="p1"><span class="s1">.pill-normal { background: #f0ebe8; color: var(–muted); }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.week-tip {</span></p>
-<p class="p1"><span class="s1">margin-top: 12px;</span></p>
-<p class="p1"><span class="s1">padding: 10px 14px;</span></p>
-<p class="p1"><span class="s1">background: var(–lavender-pale);</span></p>
-<p class="p1"><span class="s1">border-left: 3px solid var(–lavender);</span></p>
-<p class="p1"><span class="s1">border-radius: 0 8px 8px 0;</span></p>
-<p class="p1"><span class="s1">font-size: 11px;</span></p>
-<p class="p1"><span class="s1">color: var(–lavender);</span></p>
-<p class="p1"><span class="s1">line-height: 1.6;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* MINDSET */</span></p>
-<p class="p1"><span class="s1">.mindset-card {</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">border: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">border-radius: 16px;</span></p>
-<p class="p1"><span class="s1">padding: 22px;</span></p>
-<p class="p1"><span class="s1">margin-bottom: 14px;</span></p>
-<p class="p1"><span class="s1">box-shadow: 0 2px 12px rgba(212,116,138,0.05);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.mindset-title {</span></p>
-<p class="p1"><span class="s1">font-family: ‘Fraunces’, serif;</span></p>
-<p class="p1"><span class="s1">font-size: 19px;</span></p>
-<p class="p1"><span class="s1">color: var(–rose);</span></p>
-<p class="p1"><span class="s1">margin-bottom: 10px;</span></p>
-<p class="p1"><span class="s1">font-weight: 600;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.mindset-text {</span></p>
-<p class="p1"><span class="s1">font-size: 13px;</span></p>
-<p class="p1"><span class="s1">line-height: 1.8;</span></p>
-<p class="p1"><span class="s1">color: var(–text-light);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.mindset-quote {</span></p>
-<p class="p1"><span class="s1">font-family: ‘Fraunces’, serif;</span></p>
-<p class="p1"><span class="s1">font-style: italic;</span></p>
-<p class="p1"><span class="s1">font-size: 15px;</span></p>
-<p class="p1"><span class="s1">color: var(–text);</span></p>
-<p class="p1"><span class="s1">border-left: 3px solid var(–rose-light);</span></p>
-<p class="p1"><span class="s1">padding-left: 16px;</span></p>
-<p class="p1"><span class="s1">margin: 18px 0;</span></p>
-<p class="p1"><span class="s1">line-height: 1.7;</span></p>
-<p class="p1"><span class="s1">font-weight: 300;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.principle-grid {</span></p>
-<p class="p1"><span class="s1">display: grid;</span></p>
-<p class="p1"><span class="s1">grid-template-columns: 1fr 1fr;</span></p>
-<p class="p1"><span class="s1">gap: 10px;</span></p>
-<p class="p1"><span class="s1">margin-top: 12px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.principle {</span></p>
-<p class="p1"><span class="s1">background: var(–bg);</span></p>
-<p class="p1"><span class="s1">border: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">padding: 14px;</span></p>
-<p class="p1"><span class="s1">border-radius: 12px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.principle-num {</span></p>
-<p class="p1"><span class="s1">font-size: 22px;</span></p>
-<p class="p1"><span class="s1">font-weight: 600;</span></p>
-<p class="p1"><span class="s1">color: var(–rose-light);</span></p>
-<p class="p1"><span class="s1">font-family: ‘Fraunces’, serif;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.principle-text {</span></p>
-<p class="p1"><span class="s1">font-size: 11px;</span></p>
-<p class="p1"><span class="s1">color: var(–text);</span></p>
-<p class="p1"><span class="s1">margin-top: 4px;</span></p>
-<p class="p1"><span class="s1">line-height: 1.5;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* TRACKER */</span></p>
-<p class="p1"><span class="s1">.tracker-week {</span></p>
-<p class="p1"><span class="s1">margin-bottom: 24px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.tracker-week-title {</span></p>
-<p class="p1"><span class="s1">font-size: 10px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 2px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">color: var(–rose);</span></p>
-<p class="p1"><span class="s1">margin-bottom: 10px;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.tracker-days {</span></p>
-<p class="p1"><span class="s1">display: grid;</span></p>
-<p class="p1"><span class="s1">grid-template-columns: repeat(7, 1fr);</span></p>
-<p class="p1"><span class="s1">gap: 6px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.tracker-day {</span></p>
-<p class="p1"><span class="s1">aspect-ratio: 1;</span></p>
-<p class="p1"><span class="s1">border: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">border-radius: 10px;</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">flex-direction: column;</span></p>
-<p class="p1"><span class="s1">align-items: center;</span></p>
-<p class="p1"><span class="s1">justify-content: center;</span></p>
-<p class="p1"><span class="s1">cursor: pointer;</span></p>
-<p class="p1"><span class="s1">transition: all 0.2s;</span></p>
-<p class="p1"><span class="s1">font-size: 9px;</span></p>
-<p class="p1"><span class="s1">color: var(–muted);</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 0.5px;</span></p>
-<p class="p1"><span class="s1">position: relative;</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">box-shadow: 0 1px 4px rgba(212,116,138,0.04);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.tracker-day span { font-size: 14px; margin-bottom: 2px; }</span></p>
-<p class="p1"><span class="s1">.tracker-day.done-omad { border-color: var(–rose-light); background: var(–rose-pale); color: var(–rose); }</span></p>
-<p class="p1"><span class="s1">.tracker-day.done-2meal { border-color: #a8d4b8; background: var(–sage-pale); color: var(–sage); }</span></p>
-<p class="p1"><span class="s1">.tracker-day.done-normal { border-color: #ddd; background: #f5f0ee; color: #bbb; }</span></p>
-<p class="p1"><span class="s1">.tracker-day.future { opacity: 0.35; cursor: not-allowed; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.tracker-legend {</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">gap: 14px;</span></p>
-<p class="p1"><span class="s1">margin-bottom: 18px;</span></p>
-<p class="p1"><span class="s1">flex-wrap: wrap;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.legend-item {</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">align-items: center;</span></p>
-<p class="p1"><span class="s1">gap: 7px;</span></p>
-<p class="p1"><span class="s1">font-size: 11px;</span></p>
-<p class="p1"><span class="s1">color: var(–text-light);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.legend-dot {</span></p>
-<p class="p1"><span class="s1">width: 10px; height: 10px; border-radius: 3px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.dot-omad { background: var(–rose-light); }</span></p>
-<p class="p1"><span class="s1">.dot-2meal { background: var(–sage); opacity: 0.7; }</span></p>
-<p class="p1"><span class="s1">.dot-normal { background: #ccc; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* WEIGHT */</span></p>
-<p class="p1"><span class="s1">.weight-section { margin-bottom: 24px; }</span></p>
-<p class="p1"><span class="s1">.weight-title {</span></p>
-<p class="p1"><span class="s1">font-size: 10px; letter-spacing: 2px; text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">color: var(–rose); margin-bottom: 12px; font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.weight-input-row {</span></p>
-<p class="p1"><span class="s1">display: flex; gap: 8px; margin-bottom: 8px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.weight-input-row input {</span></p>
-<p class="p1"><span class="s1">flex: 1;</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">border: 1.5px solid var(–border);</span></p>
-<p class="p1"><span class="s1">color: var(–text);</span></p>
-<p class="p1"><span class="s1">font-family: ‘DM Sans’, sans-serif;</span></p>
-<p class="p1"><span class="s1">font-size: 14px;</span></p>
-<p class="p1"><span class="s1">padding: 11px 14px;</span></p>
-<p class="p1"><span class="s1">border-radius: 12px;</span></p>
-<p class="p1"><span class="s1">outline: none;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.weight-input-row input:focus { border-color: var(–rose-light); }</span></p>
-<p class="p1"><span class="s1">.btn-gold {</span></p>
-<p class="p1"><span class="s1">background: linear-gradient(135deg, var(–rose) 0%, #c45c78 100%);</span></p>
-<p class="p1"><span class="s1">color: #fff;</span></p>
-<p class="p1"><span class="s1">border: none;</span></p>
-<p class="p1"><span class="s1">font-family: ‘DM Sans’, sans-serif;</span></p>
-<p class="p1"><span class="s1">font-size: 11px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 1px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">padding: 11px 18px;</span></p>
-<p class="p1"><span class="s1">border-radius: 12px;</span></p>
-<p class="p1"><span class="s1">cursor: pointer;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">box-shadow: 0 3px 12px rgba(212,116,138,0.3);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.weight-log {</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">border: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">border-radius: 14px;</span></p>
-<p class="p1"><span class="s1">overflow: hidden;</span></p>
-<p class="p1"><span class="s1">box-shadow: 0 2px 10px rgba(212,116,138,0.05);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.weight-entry {</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">justify-content: space-between;</span></p>
-<p class="p1"><span class="s1">align-items: center;</span></p>
-<p class="p1"><span class="s1">padding: 11px 16px;</span></p>
-<p class="p1"><span class="s1">border-bottom: 1px solid #f0e8e4;</span></p>
-<p class="p1"><span class="s1">font-size: 13px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.weight-entry:last-child { border-bottom: none; }</span></p>
-<p class="p1"><span class="s1">.weight-kg { color: var(–rose); font-weight: 500; font-family: ‘Fraunces’, serif; }</span></p>
-<p class="p1"><span class="s1">.weight-diff { font-size: 11px; }</span></p>
-<p class="p1"><span class="s1">.diff-down { color: var(–sage); }</span></p>
-<p class="p1"><span class="s1">.diff-up { color: var(–peach); }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* PROGRESS BAR */</span></p>
-<p class="p1"><span class="s1">.progress-bar-wrap {</span></p>
-<p class="p1"><span class="s1">background: linear-gradient(135deg, var(–rose-pale) 0%, var(–lavender-pale) 100%);</span></p>
-<p class="p1"><span class="s1">border: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">border-radius: 14px;</span></p>
-<p class="p1"><span class="s1">padding: 18px;</span></p>
-<p class="p1"><span class="s1">margin-bottom: 16px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.progress-label {</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">justify-content: space-between;</span></p>
-<p class="p1"><span class="s1">font-size: 11px;</span></p>
-<p class="p1"><span class="s1">color: var(–text-light);</span></p>
-<p class="p1"><span class="s1">letter-spacing: 0.5px;</span></p>
-<p class="p1"><span class="s1">margin-bottom: 10px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.progress-track {</span></p>
-<p class="p1"><span class="s1">height: 8px;</span></p>
-<p class="p1"><span class="s1">background: rgba(212,116,138,0.15);</span></p>
-<p class="p1"><span class="s1">border-radius: 10px;</span></p>
-<p class="p1"><span class="s1">overflow: hidden;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.progress-fill {</span></p>
-<p class="p1"><span class="s1">height: 100%;</span></p>
-<p class="p1"><span class="s1">background: linear-gradient(90deg, var(–rose-light), var(–rose));</span></p>
-<p class="p1"><span class="s1">border-radius: 10px;</span></p>
-<p class="p1"><span class="s1">transition: width 0.6s ease;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.section-divider {</span></p>
-<p class="p1"><span class="s1">font-size: 10px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 2px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">color: var(–rose);</span></p>
-<p class="p1"><span class="s1">margin: 28px 0 14px;</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">align-items: center;</span></p>
-<p class="p1"><span class="s1">gap: 10px;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.section-divider::after {</span></p>
-<p class="p1"><span class="s1">content: ‘’;</span></p>
-<p class="p1"><span class="s1">flex: 1;</span></p>
-<p class="p1"><span class="s1">height: 1px;</span></p>
-<p class="p1"><span class="s1">background: var(–border);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.modal-overlay {</span></p>
-<p class="p1"><span class="s1">display: none;</span></p>
-<p class="p1"><span class="s1">position: fixed;</span></p>
-<p class="p1"><span class="s1">inset: 0;</span></p>
-<p class="p1"><span class="s1">background: rgba(74,53,53,0.4);</span></p>
-<p class="p1"><span class="s1">backdrop-filter: blur(6px);</span></p>
-<p class="p1"><span class="s1">z-index: 100;</span></p>
-<p class="p1"><span class="s1">align-items: center;</span></p>
-<p class="p1"><span class="s1">justify-content: center;</span></p>
-<p class="p1"><span class="s1">padding: 20px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.modal-overlay.open { display: flex; }</span></p>
-<p class="p1"><span class="s1">.modal {</span></p>
-<p class="p1"><span class="s1">background: var(–card);</span></p>
-<p class="p1"><span class="s1">border: 1px solid var(–border);</span></p>
-<p class="p1"><span class="s1">border-radius: 20px;</span></p>
-<p class="p1"><span class="s1">padding: 26px;</span></p>
-<p class="p1"><span class="s1">max-width: 320px;</span></p>
-<p class="p1"><span class="s1">width: 100%;</span></p>
-<p class="p1"><span class="s1">box-shadow: 0 20px 60px rgba(212,116,138,0.15);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.modal-title { font-family: ‘Fraunces’, serif; font-size: 18px; margin-bottom: 8px; color: var(–text); font-weight: 600; }</span></p>
-<p class="p1"><span class="s1">.modal-text { font-size: 12px; color: var(–text-light); line-height: 1.7; margin-bottom: 16px; }</span></p>
-<p class="p1"><span class="s1">.modal-btns { display: flex; gap: 8px; }</span></p>
-<p class="p1"><span class="s1">.btn-ghost {</span></p>
-<p class="p1"><span class="s1">flex: 1;</span></p>
-<p class="p1"><span class="s1">background: transparent;</span></p>
-<p class="p1"><span class="s1">border: 1.5px solid var(–border);</span></p>
-<p class="p1"><span class="s1">color: var(–muted);</span></p>
-<p class="p1"><span class="s1">font-family: ‘DM Sans’, sans-serif;</span></p>
-<p class="p1"><span class="s1">font-size: 12px;</span></p>
-<p class="p1"><span class="s1">padding: 10px;</span></p>
-<p class="p1"><span class="s1">border-radius: 12px;</span></p>
-<p class="p1"><span class="s1">cursor: pointer;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.select-row {</span></p>
-<p class="p1"><span class="s1">display: flex;</span></p>
-<p class="p1"><span class="s1">gap: 8px;</span></p>
-<p class="p1"><span class="s1">margin-bottom: 16px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.select-btn {</span></p>
-<p class="p1"><span class="s1">flex: 1;</span></p>
-<p class="p1"><span class="s1">padding: 12px 4px;</span></p>
-<p class="p1"><span class="s1">border-radius: 12px;</span></p>
-<p class="p1"><span class="s1">border: 1.5px solid var(–border);</span></p>
-<p class="p1"><span class="s1">background: var(–bg);</span></p>
-<p class="p1"><span class="s1">color: var(–muted);</span></p>
-<p class="p1"><span class="s1">font-family: ‘DM Sans’, sans-serif;</span></p>
-<p class="p1"><span class="s1">font-size: 11px;</span></p>
-<p class="p1"><span class="s1">letter-spacing: 0.5px;</span></p>
-<p class="p1"><span class="s1">text-transform: uppercase;</span></p>
-<p class="p1"><span class="s1">cursor: pointer;</span></p>
-<p class="p1"><span class="s1">transition: all 0.2s;</span></p>
-<p class="p1"><span class="s1">text-align: center;</span></p>
-<p class="p1"><span class="s1">font-weight: 500;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">.select-btn.sel-omad { border-color: var(–rose-light); background: var(–rose-pale); color: var(–rose); }</span></p>
-<p class="p1"><span class="s1">.select-btn.sel-2meal { border-color: #a8d4b8; background: var(–sage-pale); color: var(–sage); }</span></p>
-<p class="p1"><span class="s1">.select-btn.sel-normal { border-color: #ccc; background: #f5f0ee; color: #aaa; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* special mindset highlight card */</span></p>
-<p class="p1"><span class="s1">.mindset-highlight {</span></p>
-<p class="p1"><span class="s1">background: linear-gradient(135deg, var(–rose-pale) 0%, var(–lavender-pale) 100%);</span></p>
-<p class="p1"><span class="s1">border-color: rgba(212,116,138,0.3);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="hero"&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="hero-eyebrow"&gt;08. Mai — 17. Juli 2025&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;h1 class="hero-title"&gt;10 Wochen&lt;br&gt;&lt;em&gt;Fastenjourney&lt;/em&gt;&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;p class="hero-sub"&gt;63 kg → 58 kg · 160 cm · OMAD-Methode&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="stats-bar"&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="stat"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-value" id="stat-week"&gt;W1&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-label"&gt;Woche&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="stat"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-value" id="stat-weight"&gt;63.0&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-label"&gt;kg aktuell&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="stat"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-value" id="stat-lost"&gt;0.0&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-label"&gt;kg verloren&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="stat"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-value" id="stat-omad"&gt;0&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;span class="stat-label"&gt;OMAD-Tage&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="tabs"&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="tab active" onclick="showTab('plan')"&gt;Wochenplan&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="tab" onclick="showTab('tracker')"&gt;Tracker&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="tab" onclick="showTab('weight')"&gt;Gewicht&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="tab" onclick="showTab('mindset')"&gt;Mindset&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;!-- ===== PLAN ===== --&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="content section active" id="tab-plan"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div id="weeks-container"&gt;&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;!-- ===== TRACKER ===== --&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="content section" id="tab-tracker"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="tracker-legend"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="legend-item"&gt;&lt;div class="legend-dot dot-omad"&gt;&lt;/div&gt;OMAD (1 Mahlzeit)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="legend-item"&gt;&lt;div class="legend-dot dot-2meal"&gt;&lt;/div&gt;2 Mahlzeiten&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="legend-item"&gt;&lt;div class="legend-dot dot-normal"&gt;&lt;/div&gt;Normal&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div id="tracker-container"&gt;&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;!-- ===== WEIGHT ===== --&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="content section" id="tab-weight"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="progress-bar-wrap"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="progress-label"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;span&gt;Start: 63 kg&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;span id="progress-pct"&gt;0%&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;span&gt;Ziel: 58 kg&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="progress-track"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="progress-fill" id="progress-fill" style="width:0%"&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="weight-section"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="weight-title"&gt;Gewicht eintragen&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="weight-input-row"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;input type="number" id="weight-input" step="0.1" placeholder="z.B. 62.5" /&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;button class="btn-gold" onclick="logWeight()"&gt;Eintragen&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="weight-title"&gt;Verlauf&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="weight-log" id="weight-log"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="weight-entry" style="justify-content:center; color:var(--muted); font-size:11px; padding:20px;"&gt;</span></p>
-<p class="p1"><span class="s1">      Noch keine Einträge</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;!-- ===== MINDSET ===== --&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="content section" id="tab-mindset"&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="mindset-card"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-title"&gt;Der Geist führt, der Körper folgt&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-text"&gt;</span></p>
-<p class="p1"><span class="s1">      Fasten ist keine Diät — es ist eine Fähigkeit, die du erlernst. Wie das Erlernen einer neuen Sprache: Am Anfang ist es fremd und unbequem. Nach einigen Wochen wird es zur zweiten Natur.</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-quote"&gt;</span></p>
-<p class="p1"><span class="s1">      „Hunger ist eine Welle — er kommt, erreicht seinen Höhepunkt und geht wieder. Du musst ihn nicht stoppen. Du reitest ihn einfach."</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-text"&gt;</span></p>
-<p class="p1"><span class="s1">      Das Ziel dieser 10 Wochen ist nicht nur das Gewicht. Du baust eine Beziehung zu deinem Hunger auf — und lernst, ihm zu vertrauen.</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="section-divider"&gt;Die 5 Säulen&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="principle-grid"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="principle"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-num"&gt;01&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-text"&gt;&lt;strong&gt;Kein Opfer-Mindset.&lt;/strong&gt; Du hast Überfluss im Leben — du übst Auswahl.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="principle"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-num"&gt;02&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-text"&gt;&lt;strong&gt;Hunger ≠ Notfall.&lt;/strong&gt; Dein Körper kann problemlos 18–24h ohne Essen.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="principle"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-num"&gt;03&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-text"&gt;&lt;strong&gt;Elektrolyte first.&lt;/strong&gt; Salz, Wasser, Magnesium — das sind deine Verbündeten.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="principle"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-num"&gt;04&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-text"&gt;&lt;strong&gt;Kein Perfektionismus.&lt;/strong&gt; Ein normaler Tag ruiniert nichts. Weitermachen.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="principle"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-num"&gt;05&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="principle-text"&gt;&lt;strong&gt;Fokus statt Füllung.&lt;/strong&gt; Fasten schärft den Geist — nutze die klaren Stunden.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="section-divider"&gt;Wöchentliche Schwerpunkte&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="mindset-card"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-title" style="font-size:14px; color:var(--text);"&gt;Woche 1–2: Bewusstsein&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-text"&gt;Beobachte, wann du wirklich Hunger hast vs. wann du aus Langeweile, Stress oder Gewohnheit essen möchtest. Führe innerlich Protokoll. Noch kein Druck.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="mindset-card"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-title" style="font-size:14px; color:var(--text);"&gt;Woche 3–4: Toleranz&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-text"&gt;Bleib mit dem Hunger in Kontakt. Sag innerlich: „Ich höre dich, aber ich entscheide." Das ist der Moment, wo Selbstwirksamkeit entsteht.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="mindset-card"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-title" style="font-size:14px; color:var(--text);"&gt;Woche 5–7: Rhythmus&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-text"&gt;Du entwickelst deinen natürlichen Fastenrhythmus. OMAD-Tage fühlen sich nicht mehr wie Verzicht an — sie fühlen sich klar und leicht an.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="mindset-card"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-title" style="font-size:14px; color:var(--text);"&gt;Woche 8–10: Meisterschaft&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-text"&gt;Fasten ist jetzt eine Fähigkeit, keine Anstrengung. Du weißt, wie du deinen Körper steuerst. Das Gewichtsziel rückt in den Hintergrund — die Freiheit ist das Ziel.&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="section-divider"&gt;Praktische Anker&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">  &lt;div class="mindset-card" style="background:linear-gradient(135deg,var(--rose-pale),var(--peach-pale)); border-color:rgba(212,116,138,0.2);"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="mindset-text" style="color: var(--text);"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;strong style="color:var(--rose);"&gt;Morgens:&lt;/strong&gt; Schwarzer Kaffee oder Tee — kein Zucker, keine Milch. Starte produktiv, nicht mit Essen.&lt;br&gt;&lt;br&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;strong style="color:var(--rose);"&gt;Mittags:&lt;/strong&gt; Sparkling Water + Prise Salz wenn der Hunger stark wird. Warte 20 Minuten — er geht fast immer vorbei.&lt;br&gt;&lt;br&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;strong style="color:var(--rose);"&gt;OMAD-Fenster:&lt;/strong&gt; Iss zwischen 17–20 Uhr. Eine sättigende, nährstoffreiche Mahlzeit. Keine Snacks danach.&lt;br&gt;&lt;br&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;strong style="color:var(--rose);"&gt;2-Mahlzeiten-Tage:&lt;/strong&gt; Frühstück nicht vor 11 Uhr, Abendessen bis 20 Uhr. 16/8-Fenster.</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;!-- Modal --&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="modal-overlay" id="modal"&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;div class="modal"&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="modal-title" id="modal-date"&gt;Tag auswählen&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="modal-text"&gt;Was war dein Fastenstatus heute?&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="select-row"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="select-btn" id="btn-omad" onclick="selectType('omad')"&gt;OMAD&lt;br&gt;1×&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="select-btn" id="btn-2meal" onclick="selectType('2meal')"&gt;2×&lt;br&gt;Mahlzeit&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div class="select-btn" id="btn-normal" onclick="selectType('normal')"&gt;Normal&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="modal-btns"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;button class="btn-ghost" onclick="closeModal()"&gt;Abbrechen&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;button class="btn-gold" onclick="saveDay()"&gt;Speichern&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;script&gt;</span></p>
-<p class="p1"><span class="s1">const START = new Date('2025-05-08');</span></p>
-<p class="p1"><span class="s1">const WEEKS = 10;</span></p>
-<p class="p1"><span class="s1">const DE_DAYS = ['So','Mo','Di','Mi','Do','Fr','Sa'];</span></p>
-<p class="p1"><span class="s1">const DE_DAYS_FULL = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// PLAN DATA</span></p>
-<p class="p1"><span class="s1">const weekPlans = [</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Sanfter Einstieg", level: "easy",</span></p>
-<p class="p1"><span class="s1">    tip: "Diese Woche geht es ums Beobachten. Bemerke, wann echten Hunger entsteht. Kein Perfektionsdruck.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 08.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 09.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 10.05", type: "normal", desc: "Flexible Mahlzeiten — bewusst essen" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 11.05", type: "omad", desc: "Erste OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 12.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 13.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 14.05", type: "omad", desc: "2. OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Rhythmus aufbauen", level: "easy",</span></p>
-<p class="p1"><span class="s1">    tip: "2 OMAD-Tage pro Woche etablieren. Elektrolyte nicht vergessen: Salz, Wasser, Magnesium.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 15.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 16.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 17.05", type: "normal", desc: "Flex — soziale Situationen ok" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 18.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 19.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 20.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 21.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Intensivierung", level: "medium",</span></p>
-<p class="p1"><span class="s1">    tip: "Diese Woche: 3 OMAD-Tage. Hunger-Wellen bewusst beobachten — sie dauern meist nur 20 Min.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 22.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 23.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 24.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 25.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 26.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 27.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 28.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Komfort Zone", level: "medium",</span></p>
-<p class="p1"><span class="s1">    tip: "Woche 4: Du solltest erste Leichtigkeit spüren. OMAD-Tage fühlen sich vertrauter an. +Spaziergang am Fasttag.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 29.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 30.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 31.05", type: "normal", desc: "Flex — Recovery-Tag" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 01.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 02.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 03.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 04.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Halbzeit", level: "medium",</span></p>
-<p class="p1"><span class="s1">    tip: "Halbzeit! Wiege dich und reflektiere. Ist dein Fensterziel realistisch? Passe bei Bedarf die Essenszeit an.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 05.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 06.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 07.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 08.06", type: "normal", desc: "Flex — Halbzeit-Pause" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 09.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 10.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 11.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Tiefe des Fastens", level: "hard",</span></p>
-<p class="p1"><span class="s1">    tip: "Jetzt kommt der eigentliche Test: 4 OMAD-Tage. Du hast die Grundlage gelegt. Vertraue dem Prozess.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 12.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 13.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 14.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 15.06", type: "normal", desc: "Flex — soziale Situationen ok" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 16.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 17.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 18.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Meisterschaft", level: "hard",</span></p>
-<p class="p1"><span class="s1">    tip: "Woche 7: Das Fasten wird zur Routine. Nutze die klaren Morgenstunden für wichtige Aufgaben.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 19.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 20.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 21.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 22.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 23.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 24.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 25.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Konsolidierung", level: "hard",</span></p>
-<p class="p1"><span class="s1">    tip: "Halte das Niveau. Du bist jetzt ein Faster. Achte auf Schlaf — er ist dein wichtigstes Abnehm-Tool.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 26.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 27.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 28.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 29.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 30.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 01.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 02.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Zielgerade", level: "hard",</span></p>
-<p class="p1"><span class="s1">    tip: "Noch 2 Wochen. Bleib präzise. Vermeide Alkohol und zuckerhaltige Getränke komplett diese Woche.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 03.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 04.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 05.07", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 06.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 07.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 08.07", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 09.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  },</span></p>
-<p class="p1"><span class="s1">  {</span></p>
-<p class="p1"><span class="s1">    label: "Finale &amp; Ankommen", level: "hard",</span></p>
-<p class="p1"><span class="s1">    tip: "Letzte Woche! Feiere jeden Tag. Danach: Führe das Fasten als Lifestyle fort — 3–4 OMAD-Tage/Woche.",</span></p>
-<p class="p1"><span class="s1">    days: [</span></p>
-<p class="p1"><span class="s1">      { name: "Do 10.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Fr 11.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Sa 12.07", type: "2meal", desc: "2 Mahlzeiten — entspannter Samstag" },</span></p>
-<p class="p1"><span class="s1">      { name: "So 13.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mo 14.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Di 15.07", type: "omad", desc: "OMAD — letzter Tag! Mahlzeit 17–20 Uhr" },</span></p>
-<p class="p1"><span class="s1">      { name: "Mi 16.07", type: "2meal", desc: "Zielankuft 🏆 — Feiern erlaubt!" },</span></p>
-<p class="p1"><span class="s1">    ]</span></p>
-<p class="p1"><span class="s1">  }</span></p>
-<p class="p1"><span class="s1">];</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function typeIcon(t) {</span></p>
-<p class="p1"><span class="s1">  if (t === 'omad') return '⚡';</span></p>
-<p class="p1"><span class="s1">  if (t === '2meal') return '🌙';</span></p>
-<p class="p1"><span class="s1">  return '🍽';</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1">function typePill(t) {</span></p>
-<p class="p1"><span class="s1">  if (t === 'omad') return `&lt;span class="fasting-pill pill-omad"&gt;OMAD&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1">  if (t === '2meal') return `&lt;span class="fasting-pill pill-2meal"&gt;2 Mahlzeiten&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1">  return `&lt;span class="fasting-pill pill-normal"&gt;Normal&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// Build plan</span></p>
-<p class="p1"><span class="s1">const planContainer = document.getElementById('weeks-container');</span></p>
-<p class="p1"><span class="s1">weekPlans.forEach((w, i) =&gt; {</span></p>
-<p class="p1"><span class="s1">  const card = document.createElement('div');</span></p>
-<p class="p1"><span class="s1">  card.className = 'week-card';</span></p>
-<p class="p1"><span class="s1">  card.innerHTML = `</span></p>
-<p class="p1"><span class="s1">    &lt;div class="week-header"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;div&gt;</span></p>
-<p class="p1"><span class="s1">        &lt;div class="week-num"&gt;Woche ${i+1}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">        &lt;div class="week-label"&gt;${w.label}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;span class="week-badge badge-${w.level}"&gt;${w.level === 'easy' ? 'Leicht' : w.level === 'medium' ? 'Mittel' : 'Intensiv'}&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;div class="week-body"&gt;</span></p>
-<p class="p1"><span class="s1">      ${w.days.map(d =&gt; `</span></p>
-<p class="p1"><span class="s1">        &lt;div class="day-row"&gt;</span></p>
-<p class="p1"><span class="s1">          &lt;div class="day-name"&gt;${d.name}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">          &lt;div class="day-type"&gt;${d.desc}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">          &lt;div&gt;${typePill(d.type)}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">        &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">      `).join('')}</span></p>
-<p class="p1"><span class="s1">      &lt;div class="week-tip"&gt;💡 ${w.tip}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">  `;</span></p>
-<p class="p1"><span class="s1">  planContainer.appendChild(card);</span></p>
-<p class="p1"><span class="s1">});</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// ===== TRACKER =====</span></p>
-<p class="p1"><span class="s1">let trackerData = JSON.parse(localStorage.getItem('fastenTracker') || '{}');</span></p>
-<p class="p1"><span class="s1">let weightData = JSON.parse(localStorage.getItem('fastenWeight') || '[]');</span></p>
-<p class="p1"><span class="s1">let currentModalDate = null;</span></p>
-<p class="p1"><span class="s1">let selectedType = null;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">const today = new Date();</span></p>
-<p class="p1"><span class="s1">today.setHours(0,0,0,0);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function buildTracker() {</span></p>
-<p class="p1"><span class="s1">  const container = document.getElementById('tracker-container');</span></p>
-<p class="p1"><span class="s1">  container.innerHTML = '';</span></p>
-<p class="p1"><span class="s1"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">  weekPlans.forEach((w, wi) =&gt; {</span></p>
-<p class="p1"><span class="s1">    const wrap = document.createElement('div');</span></p>
-<p class="p1"><span class="s1">    wrap.className = 'tracker-week';</span></p>
-<p class="p1"><span class="s1">   <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">    const title = document.createElement('div');</span></p>
-<p class="p1"><span class="s1">    title.className = 'tracker-week-title';</span></p>
-<p class="p1"><span class="s1">    title.textContent = `Woche ${wi+1} — ${w.label}`;</span></p>
-<p class="p1"><span class="s1">    wrap.appendChild(title);</span></p>
-<p class="p1"><span class="s1">   <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">    const grid = document.createElement('div');</span></p>
-<p class="p1"><span class="s1">    grid.className = 'tracker-days';</span></p>
-<p class="p1"><span class="s1">   <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">    w.days.forEach((d, di) =&gt; {</span></p>
-<p class="p1"><span class="s1">      const dateKey = `w${wi}d${di}`;</span></p>
-<p class="p1"><span class="s1">      const dayDiv = document.createElement('div');</span></p>
-<p class="p1"><span class="s1">      dayDiv.className = 'tracker-day';</span></p>
-<p class="p1"><span class="s1">     <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">      const planned = weekPlans[wi].days[di];</span></p>
-<p class="p1"><span class="s1">      // Get actual date for this slot</span></p>
-<p class="p1"><span class="s1">      const dayOffset = wi * 7 + di;</span></p>
-<p class="p1"><span class="s1">      const thisDate = new Date(START);</span></p>
-<p class="p1"><span class="s1">      thisDate.setDate(START.getDate() + dayOffset);</span></p>
-<p class="p1"><span class="s1">      thisDate.setHours(0,0,0,0);</span></p>
-<p class="p1"><span class="s1">      const isFuture = thisDate &gt; today;</span></p>
-<p class="p1"><span class="s1">      const shortName = d.name.split(' ')[0];</span></p>
-<p class="p1"><span class="s1">     <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">      if (trackerData[dateKey]) {</span></p>
-<p class="p1"><span class="s1">        const t = trackerData[dateKey];</span></p>
-<p class="p1"><span class="s1">        dayDiv.classList.add(`done-${t}`);</span></p>
-<p class="p1"><span class="s1">        dayDiv.innerHTML = `&lt;span&gt;${t === 'omad' ? '⚡' : t === '2meal' ? '🌙' : '✓'}&lt;/span&gt;${shortName}`;</span></p>
-<p class="p1"><span class="s1">      } else if (isFuture) {</span></p>
-<p class="p1"><span class="s1">        dayDiv.classList.add('future');</span></p>
-<p class="p1"><span class="s1">        dayDiv.innerHTML = `&lt;span&gt;${typeIcon(planned.type)}&lt;/span&gt;${shortName}`;</span></p>
-<p class="p1"><span class="s1">      } else {</span></p>
-<p class="p1"><span class="s1">        dayDiv.innerHTML = `&lt;span&gt;○&lt;/span&gt;${shortName}`;</span></p>
-<p class="p1"><span class="s1">        dayDiv.onclick = () =&gt; openModal(dateKey, d.name);</span></p>
-<p class="p1"><span class="s1">      }</span></p>
-<p class="p1"><span class="s1">     <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">      grid.appendChild(dayDiv);</span></p>
-<p class="p1"><span class="s1">    });</span></p>
-<p class="p1"><span class="s1">   <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">    wrap.appendChild(grid);</span></p>
-<p class="p1"><span class="s1">    container.appendChild(wrap);</span></p>
-<p class="p1"><span class="s1">  });</span></p>
-<p class="p1"><span class="s1"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">  updateStats();</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function openModal(dateKey, label) {</span></p>
-<p class="p1"><span class="s1">  currentModalDate = dateKey;</span></p>
-<p class="p1"><span class="s1">  selectedType = null;</span></p>
-<p class="p1"><span class="s1">  document.getElementById('modal-date').textContent = label;</span></p>
-<p class="p1"><span class="s1">  document.getElementById('btn-omad').className = 'select-btn';</span></p>
-<p class="p1"><span class="s1">  document.getElementById('btn-2meal').className = 'select-btn';</span></p>
-<p class="p1"><span class="s1">  document.getElementById('btn-normal').className = 'select-btn';</span></p>
-<p class="p1"><span class="s1">  document.getElementById('modal').classList.add('open');</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function closeModal() {</span></p>
-<p class="p1"><span class="s1">  document.getElementById('modal').classList.remove('open');</span></p>
-<p class="p1"><span class="s1">  currentModalDate = null;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function selectType(type) {</span></p>
-<p class="p1"><span class="s1">  selectedType = type;</span></p>
-<p class="p1"><span class="s1">  document.getElementById('btn-omad').className = 'select-btn' + (type === 'omad' ? ' sel-omad' : '');</span></p>
-<p class="p1"><span class="s1">  document.getElementById('btn-2meal').className = 'select-btn' + (type === '2meal' ? ' sel-2meal' : '');</span></p>
-<p class="p1"><span class="s1">  document.getElementById('btn-normal').className = 'select-btn' + (type === 'normal' ? ' sel-normal' : '');</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function saveDay() {</span></p>
-<p class="p1"><span class="s1">  if (!selectedType || !currentModalDate) return;</span></p>
-<p class="p1"><span class="s1">  trackerData[currentModalDate] = selectedType;</span></p>
-<p class="p1"><span class="s1">  localStorage.setItem('fastenTracker', JSON.stringify(trackerData));</span></p>
-<p class="p1"><span class="s1">  closeModal();</span></p>
-<p class="p1"><span class="s1">  buildTracker();</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// ===== WEIGHT =====</span></p>
-<p class="p1"><span class="s1">function logWeight() {</span></p>
-<p class="p1"><span class="s1">  const val = parseFloat(document.getElementById('weight-input').value);</span></p>
-<p class="p1"><span class="s1">  if (isNaN(val) || val &lt; 30 || val &gt; 200) return;</span></p>
-<p class="p1"><span class="s1">  const now = new Date();</span></p>
-<p class="p1"><span class="s1">  const entry = { kg: val, date: now.toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit' }), ts: Date.now() };</span></p>
-<p class="p1"><span class="s1">  weightData.unshift(entry);</span></p>
-<p class="p1"><span class="s1">  localStorage.setItem('fastenWeight', JSON.stringify(weightData));</span></p>
-<p class="p1"><span class="s1">  document.getElementById('weight-input').value = '';</span></p>
-<p class="p1"><span class="s1">  renderWeight();</span></p>
-<p class="p1"><span class="s1">  updateStats();</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function renderWeight() {</span></p>
-<p class="p1"><span class="s1">  const log = document.getElementById('weight-log');</span></p>
-<p class="p1"><span class="s1">  if (weightData.length === 0) {</span></p>
-<p class="p1"><span class="s1">    log.innerHTML = '&lt;div class="weight-entry" style="justify-content:center; color:var(--muted); font-size:11px; padding:20px;"&gt;Noch keine Einträge&lt;/div&gt;';</span></p>
-<p class="p1"><span class="s1">    return;</span></p>
-<p class="p1"><span class="s1">  }</span></p>
-<p class="p1"><span class="s1">  log.innerHTML = weightData.map((e, i) =&gt; {</span></p>
-<p class="p1"><span class="s1">    const prev = weightData[i+1];</span></p>
-<p class="p1"><span class="s1">    let diffHtml = '';</span></p>
-<p class="p1"><span class="s1">    if (prev) {</span></p>
-<p class="p1"><span class="s1">      const diff = e.kg - prev.kg;</span></p>
-<p class="p1"><span class="s1">      const sign = diff &gt; 0 ? '+' : '';</span></p>
-<p class="p1"><span class="s1">      diffHtml = `&lt;span class="weight-diff ${diff &lt;= 0 ? 'diff-down' : 'diff-up'}"&gt;${sign}${diff.toFixed(1)} kg&lt;/span&gt;`;</span></p>
-<p class="p1"><span class="s1">    }</span></p>
-<p class="p1"><span class="s1">    return `&lt;div class="weight-entry"&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;span style="color:var(--muted)"&gt;${e.date}&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">      &lt;span class="weight-kg"&gt;${e.kg.toFixed(1)} kg&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1">      ${diffHtml}</span></p>
-<p class="p1"><span class="s1">    &lt;/div&gt;`;</span></p>
-<p class="p1"><span class="s1">  }).join('');</span></p>
-<p class="p1"><span class="s1"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">  // Progress</span></p>
-<p class="p1"><span class="s1">  const current = weightData[0].kg;</span></p>
-<p class="p1"><span class="s1">  const lost = 63 - current;</span></p>
-<p class="p1"><span class="s1">  const pct = Math.max(0, Math.min(100, (lost / 5) * 100));</span></p>
-<p class="p1"><span class="s1">  document.getElementById('progress-fill').style.width = pct + '%';</span></p>
-<p class="p1"><span class="s1">  document.getElementById('progress-pct').textContent = Math.round(pct) + '%';</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function updateStats() {</span></p>
-<p class="p1"><span class="s1">  // Current weight</span></p>
-<p class="p1"><span class="s1">  const cw = weightData.length &gt; 0 ? weightData[0].kg : 63.0;</span></p>
-<p class="p1"><span class="s1">  document.getElementById('stat-weight').textContent = cw.toFixed(1);</span></p>
-<p class="p1"><span class="s1">  const lost = (63 - cw).toFixed(1);</span></p>
-<p class="p1"><span class="s1">  document.getElementById('stat-lost').textContent = lost &gt; 0 ? lost : '0.0';</span></p>
-<p class="p1"><span class="s1"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">  // OMAD count</span></p>
-<p class="p1"><span class="s1">  const omadCount = Object.values(trackerData).filter(v =&gt; v === 'omad').length;</span></p>
-<p class="p1"><span class="s1">  document.getElementById('stat-omad').textContent = omadCount;</span></p>
-<p class="p1"><span class="s1"> <span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s1">  // Current week</span></p>
-<p class="p1"><span class="s1">  const daysSinceStart = Math.floor((today - START) / 86400000);</span></p>
-<p class="p1"><span class="s1">  const weekNum = Math.min(10, Math.floor(daysSinceStart / 7) + 1);</span></p>
-<p class="p1"><span class="s1">  document.getElementById('stat-week').textContent = `W${weekNum}`;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">function showTab(name) {</span></p>
-<p class="p1"><span class="s1">  document.querySelectorAll('.tab').forEach((t, i) =&gt; {</span></p>
-<p class="p1"><span class="s1">    const tabs = ['plan','tracker','weight','mindset'];</span></p>
-<p class="p1"><span class="s1">    t.classList.toggle('active', tabs[i] === name);</span></p>
-<p class="p1"><span class="s1">  });</span></p>
-<p class="p1"><span class="s1">  document.querySelectorAll('.section').forEach(s =&gt; s.classList.remove('active'));</span></p>
-<p class="p1"><span class="s1">  document.getElementById('tab-' + name).classList.add('active');</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// Init</span></p>
-<p class="p1"><span class="s1">buildTracker();</span></p>
-<p class="p1"><span class="s1">renderWeight();</span></p>
-<p class="p1"><span class="s1">updateStats();</span></p>
-<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+
+<div class="hero">
+  <div class="hero-eyebrow">08. Mai — 17. Juli 2025</div>
+  <h1 class="hero-title">10 Wochen<br><em>Fastenjourney</em></h1>
+  <p class="hero-sub">63 kg → 58 kg · 160 cm · OMAD-Methode</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-value" id="stat-week">W1</span>
+    <span class="stat-label">Woche</span>
+  </div>
+  <div class="stat">
+    <span class="stat-value" id="stat-weight">63.0</span>
+    <span class="stat-label">kg aktuell</span>
+  </div>
+  <div class="stat">
+    <span class="stat-value" id="stat-lost">0.0</span>
+    <span class="stat-label">kg verloren</span>
+  </div>
+  <div class="stat">
+    <span class="stat-value" id="stat-omad">0</span>
+    <span class="stat-label">OMAD-Tage</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('plan')">Wochenplan</div>
+  <div class="tab" onclick="showTab('tracker')">Tracker</div>
+  <div class="tab" onclick="showTab('weight')">Gewicht</div>
+  <div class="tab" onclick="showTab('mindset')">Mindset</div>
+</div>
+
+<!-- ===== PLAN ===== -->
+
+<div class="content section active" id="tab-plan">
+
+  <div id="weeks-container"></div>
+
+</div>
+
+<!-- ===== TRACKER ===== -->
+
+<div class="content section" id="tab-tracker">
+
+  <div class="tracker-legend">
+    <div class="legend-item"><div class="legend-dot dot-omad"></div>OMAD (1 Mahlzeit)</div>
+    <div class="legend-item"><div class="legend-dot dot-2meal"></div>2 Mahlzeiten</div>
+    <div class="legend-item"><div class="legend-dot dot-normal"></div>Normal</div>
+  </div>
+
+  <div id="tracker-container"></div>
+
+</div>
+
+<!-- ===== WEIGHT ===== -->
+
+<div class="content section" id="tab-weight">
+
+  <div class="progress-bar-wrap">
+    <div class="progress-label">
+      <span>Start: 63 kg</span>
+      <span id="progress-pct">0%</span>
+      <span>Ziel: 58 kg</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="weight-section">
+    <div class="weight-title">Gewicht eintragen</div>
+    <div class="weight-input-row">
+      <input type="number" id="weight-input" step="0.1" placeholder="z.B. 62.5" />
+      <button class="btn-gold" onclick="logWeight()">Eintragen</button>
+    </div>
+  </div>
+
+  <div class="weight-title">Verlauf</div>
+  <div class="weight-log" id="weight-log">
+    <div class="weight-entry" style="justify-content:center; color:var(--muted); font-size:11px; padding:20px;">
+      Noch keine Einträge
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== MINDSET ===== -->
+
+<div class="content section" id="tab-mindset">
+
+  <div class="mindset-card">
+    <div class="mindset-title">Der Geist führt, der Körper folgt</div>
+    <div class="mindset-text">
+      Fasten ist keine Diät — es ist eine Fähigkeit, die du erlernst. Wie das Erlernen einer neuen Sprache: Am Anfang ist es fremd und unbequem. Nach einigen Wochen wird es zur zweiten Natur.
+    </div>
+    <div class="mindset-quote">
+      „Hunger ist eine Welle — er kommt, erreicht seinen Höhepunkt und geht wieder. Du musst ihn nicht stoppen. Du reitest ihn einfach."
+    </div>
+    <div class="mindset-text">
+      Das Ziel dieser 10 Wochen ist nicht nur das Gewicht. Du baust eine Beziehung zu deinem Hunger auf — und lernst, ihm zu vertrauen.
+    </div>
+  </div>
+
+  <div class="section-divider">Die 5 Säulen</div>
+
+  <div class="principle-grid">
+    <div class="principle">
+      <div class="principle-num">01</div>
+      <div class="principle-text"><strong>Kein Opfer-Mindset.</strong> Du hast Überfluss im Leben — du übst Auswahl.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">02</div>
+      <div class="principle-text"><strong>Hunger ≠ Notfall.</strong> Dein Körper kann problemlos 18–24h ohne Essen.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">03</div>
+      <div class="principle-text"><strong>Elektrolyte first.</strong> Salz, Wasser, Magnesium — das sind deine Verbündeten.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">04</div>
+      <div class="principle-text"><strong>Kein Perfektionismus.</strong> Ein normaler Tag ruiniert nichts. Weitermachen.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">05</div>
+      <div class="principle-text"><strong>Fokus statt Füllung.</strong> Fasten schärft den Geist — nutze die klaren Stunden.</div>
+    </div>
+  </div>
+
+  <div class="section-divider">Wöchentliche Schwerpunkte</div>
+
+  <div class="mindset-card">
+    <div class="mindset-title" style="font-size:14px; color:var(--text);">Woche 1–2: Bewusstsein</div>
+    <div class="mindset-text">Beobachte, wann du wirklich Hunger hast vs. wann du aus Langeweile, Stress oder Gewohnheit essen möchtest. Führe innerlich Protokoll. Noch kein Druck.</div>
+  </div>
+
+  <div class="mindset-card">
+    <div class="mindset-title" style="font-size:14px; color:var(--text);">Woche 3–4: Toleranz</div>
+    <div class="mindset-text">Bleib mit dem Hunger in Kontakt. Sag innerlich: „Ich höre dich, aber ich entscheide." Das ist der Moment, wo Selbstwirksamkeit entsteht.</div>
+  </div>
+
+  <div class="mindset-card">
+    <div class="mindset-title" style="font-size:14px; color:var(--text);">Woche 5–7: Rhythmus</div>
+    <div class="mindset-text">Du entwickelst deinen natürlichen Fastenrhythmus. OMAD-Tage fühlen sich nicht mehr wie Verzicht an — sie fühlen sich klar und leicht an.</div>
+  </div>
+
+  <div class="mindset-card">
+    <div class="mindset-title" style="font-size:14px; color:var(--text);">Woche 8–10: Meisterschaft</div>
+    <div class="mindset-text">Fasten ist jetzt eine Fähigkeit, keine Anstrengung. Du weißt, wie du deinen Körper steuerst. Das Gewichtsziel rückt in den Hintergrund — die Freiheit ist das Ziel.</div>
+  </div>
+
+  <div class="section-divider">Praktische Anker</div>
+
+  <div class="mindset-card" style="background:linear-gradient(135deg,var(--rose-pale),var(--peach-pale)); border-color:rgba(212,116,138,0.2);">
+    <div class="mindset-text" style="color: var(--text);">
+      <strong style="color:var(--rose);">Morgens:</strong> Schwarzer Kaffee oder Tee — kein Zucker, keine Milch. Starte produktiv, nicht mit Essen.<br><br>
+      <strong style="color:var(--rose);">Mittags:</strong> Sparkling Water + Prise Salz wenn der Hunger stark wird. Warte 20 Minuten — er geht fast immer vorbei.<br><br>
+      <strong style="color:var(--rose);">OMAD-Fenster:</strong> Iss zwischen 17–20 Uhr. Eine sättigende, nährstoffreiche Mahlzeit. Keine Snacks danach.<br><br>
+      <strong style="color:var(--rose);">2-Mahlzeiten-Tage:</strong> Frühstück nicht vor 11 Uhr, Abendessen bis 20 Uhr. 16/8-Fenster.
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-title" id="modal-date">Tag auswählen</div>
+    <div class="modal-text">Was war dein Fastenstatus heute?</div>
+    <div class="select-row">
+      <div class="select-btn" id="btn-omad" onclick="selectType('omad')">OMAD<br>1×</div>
+      <div class="select-btn" id="btn-2meal" onclick="selectType('2meal')">2×<br>Mahlzeit</div>
+      <div class="select-btn" id="btn-normal" onclick="selectType('normal')">Normal</div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-ghost" onclick="closeModal()">Abbrechen</button>
+      <button class="btn-gold" onclick="saveDay()">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const START = new Date('2025-05-08');
+const WEEKS = 10;
+const DE_DAYS = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+const DE_DAYS_FULL = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+
+// PLAN DATA
+const weekPlans = [
+  {
+    label: "Sanfter Einstieg", level: "easy",
+    tip: "Diese Woche geht es ums Beobachten. Bemerke, wann echten Hunger entsteht. Kein Perfektionsdruck.",
+    days: [
+      { name: "Do 08.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },
+      { name: "Fr 09.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },
+      { name: "Sa 10.05", type: "normal", desc: "Flexible Mahlzeiten — bewusst essen" },
+      { name: "So 11.05", type: "omad", desc: "Erste OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mo 12.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Di 13.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Mi 14.05", type: "omad", desc: "2. OMAD — Mahlzeit 17–20 Uhr" },
+    ]
+  },
+  {
+    label: "Rhythmus aufbauen", level: "easy",
+    tip: "2 OMAD-Tage pro Woche etablieren. Elektrolyte nicht vergessen: Salz, Wasser, Magnesium.",
+    days: [
+      { name: "Do 15.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Fr 16.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Sa 17.05", type: "normal", desc: "Flex — soziale Situationen ok" },
+      { name: "So 18.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },
+      { name: "Mo 19.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Di 20.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Mi 21.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+    ]
+  },
+  {
+    label: "Intensivierung", level: "medium",
+    tip: "Diese Woche: 3 OMAD-Tage. Hunger-Wellen bewusst beobachten — sie dauern meist nur 20 Min.",
+    days: [
+      { name: "Do 22.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Fr 23.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Sa 24.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },
+      { name: "So 25.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mo 26.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Di 27.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mi 28.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+    ]
+  },
+  {
+    label: "Komfort Zone", level: "medium",
+    tip: "Woche 4: Du solltest erste Leichtigkeit spüren. OMAD-Tage fühlen sich vertrauter an. +Spaziergang am Fasttag.",
+    days: [
+      { name: "Do 29.05", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Fr 30.05", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Sa 31.05", type: "normal", desc: "Flex — Recovery-Tag" },
+      { name: "So 01.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mo 02.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Di 03.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Mi 04.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+    ]
+  },
+  {
+    label: "Halbzeit", level: "medium",
+    tip: "Halbzeit! Wiege dich und reflektiere. Ist dein Fensterziel realistisch? Passe bei Bedarf die Essenszeit an.",
+    days: [
+      { name: "Do 05.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Fr 06.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Sa 07.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "So 08.06", type: "normal", desc: "Flex — Halbzeit-Pause" },
+      { name: "Mo 09.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Di 10.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Mi 11.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+    ]
+  },
+  {
+    label: "Tiefe des Fastens", level: "hard",
+    tip: "Jetzt kommt der eigentliche Test: 4 OMAD-Tage. Du hast die Grundlage gelegt. Vertraue dem Prozess.",
+    days: [
+      { name: "Do 12.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Fr 13.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Sa 14.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },
+      { name: "So 15.06", type: "normal", desc: "Flex — soziale Situationen ok" },
+      { name: "Mo 16.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Di 17.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Mi 18.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+    ]
+  },
+  {
+    label: "Meisterschaft", level: "hard",
+    tip: "Woche 7: Das Fasten wird zur Routine. Nutze die klaren Morgenstunden für wichtige Aufgaben.",
+    days: [
+      { name: "Do 19.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Fr 20.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Sa 21.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "So 22.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mo 23.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Di 24.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mi 25.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+    ]
+  },
+  {
+    label: "Konsolidierung", level: "hard",
+    tip: "Halte das Niveau. Du bist jetzt ein Faster. Achte auf Schlaf — er ist dein wichtigstes Abnehm-Tool.",
+    days: [
+      { name: "Do 26.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Fr 27.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Sa 28.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },
+      { name: "So 29.06", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mo 30.06", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Di 01.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mi 02.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+    ]
+  },
+  {
+    label: "Zielgerade", level: "hard",
+    tip: "Noch 2 Wochen. Bleib präzise. Vermeide Alkohol und zuckerhaltige Getränke komplett diese Woche.",
+    days: [
+      { name: "Do 03.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Fr 04.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Sa 05.07", type: "2meal", desc: "2 Mahlzeiten — Fenster 11–19 Uhr" },
+      { name: "So 06.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mo 07.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Di 08.07", type: "2meal", desc: "2 Mahlzeiten — Fenster 12–20 Uhr" },
+      { name: "Mi 09.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+    ]
+  },
+  {
+    label: "Finale & Ankommen", level: "hard",
+    tip: "Letzte Woche! Feiere jeden Tag. Danach: Führe das Fasten als Lifestyle fort — 3–4 OMAD-Tage/Woche.",
+    days: [
+      { name: "Do 10.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Fr 11.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Sa 12.07", type: "2meal", desc: "2 Mahlzeiten — entspannter Samstag" },
+      { name: "So 13.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Mo 14.07", type: "omad", desc: "OMAD — Mahlzeit 17–20 Uhr" },
+      { name: "Di 15.07", type: "omad", desc: "OMAD — letzter Tag! Mahlzeit 17–20 Uhr" },
+      { name: "Mi 16.07", type: "2meal", desc: "Zielankuft 🏆 — Feiern erlaubt!" },
+    ]
+  }
+];
+
+function typeIcon(t) {
+  if (t === 'omad') return '⚡';
+  if (t === '2meal') return '🌙';
+  return '🍽';
+}
+function typePill(t) {
+  if (t === 'omad') return `<span class="fasting-pill pill-omad">OMAD</span>`;
+  if (t === '2meal') return `<span class="fasting-pill pill-2meal">2 Mahlzeiten</span>`;
+  return `<span class="fasting-pill pill-normal">Normal</span>`;
+}
+
+// Build plan
+const planContainer = document.getElementById('weeks-container');
+weekPlans.forEach((w, i) => {
+  const card = document.createElement('div');
+  card.className = 'week-card';
+  card.innerHTML = `
+    <div class="week-header">
+      <div>
+        <div class="week-num">Woche ${i+1}</div>
+        <div class="week-label">${w.label}</div>
+      </div>
+      <span class="week-badge badge-${w.level}">${w.level === 'easy' ? 'Leicht' : w.level === 'medium' ? 'Mittel' : 'Intensiv'}</span>
+    </div>
+    <div class="week-body">
+      ${w.days.map(d => `
+        <div class="day-row">
+          <div class="day-name">${d.name}</div>
+          <div class="day-type">${d.desc}</div>
+          <div>${typePill(d.type)}</div>
+        </div>
+      `).join('')}
+      <div class="week-tip">💡 ${w.tip}</div>
+    </div>
+  `;
+  planContainer.appendChild(card);
+});
+
+// ===== TRACKER =====
+let trackerData = JSON.parse(localStorage.getItem('fastenTracker') || '{}');
+let weightData = JSON.parse(localStorage.getItem('fastenWeight') || '[]');
+let currentModalDate = null;
+let selectedType = null;
+
+const today = new Date();
+today.setHours(0,0,0,0);
+
+function buildTracker() {
+  const container = document.getElementById('tracker-container');
+  container.innerHTML = '';
+ 
+  weekPlans.forEach((w, wi) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'tracker-week';
+   
+    const title = document.createElement('div');
+    title.className = 'tracker-week-title';
+    title.textContent = `Woche ${wi+1} — ${w.label}`;
+    wrap.appendChild(title);
+   
+    const grid = document.createElement('div');
+    grid.className = 'tracker-days';
+   
+    w.days.forEach((d, di) => {
+      const dateKey = `w${wi}d${di}`;
+      const dayDiv = document.createElement('div');
+      dayDiv.className = 'tracker-day';
+     
+      const planned = weekPlans[wi].days[di];
+      // Get actual date for this slot
+      const dayOffset = wi * 7 + di;
+      const thisDate = new Date(START);
+      thisDate.setDate(START.getDate() + dayOffset);
+      thisDate.setHours(0,0,0,0);
+      const isFuture = thisDate > today;
+      const shortName = d.name.split(' ')[0];
+     
+      if (trackerData[dateKey]) {
+        const t = trackerData[dateKey];
+        dayDiv.classList.add(`done-${t}`);
+        dayDiv.innerHTML = `<span>${t === 'omad' ? '⚡' : t === '2meal' ? '🌙' : '✓'}</span>${shortName}`;
+      } else if (isFuture) {
+        dayDiv.classList.add('future');
+        dayDiv.innerHTML = `<span>${typeIcon(planned.type)}</span>${shortName}`;
+      } else {
+        dayDiv.innerHTML = `<span>○</span>${shortName}`;
+        dayDiv.onclick = () => openModal(dateKey, d.name);
+      }
+     
+      grid.appendChild(dayDiv);
+    });
+   
+    wrap.appendChild(grid);
+    container.appendChild(wrap);
+  });
+ 
+  updateStats();
+}
+
+function openModal(dateKey, label) {
+  currentModalDate = dateKey;
+  selectedType = null;
+  document.getElementById('modal-date').textContent = label;
+  document.getElementById('btn-omad').className = 'select-btn';
+  document.getElementById('btn-2meal').className = 'select-btn';
+  document.getElementById('btn-normal').className = 'select-btn';
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  currentModalDate = null;
+}
+
+function selectType(type) {
+  selectedType = type;
+  document.getElementById('btn-omad').className = 'select-btn' + (type === 'omad' ? ' sel-omad' : '');
+  document.getElementById('btn-2meal').className = 'select-btn' + (type === '2meal' ? ' sel-2meal' : '');
+  document.getElementById('btn-normal').className = 'select-btn' + (type === 'normal' ? ' sel-normal' : '');
+}
+
+function saveDay() {
+  if (!selectedType || !currentModalDate) return;
+  trackerData[currentModalDate] = selectedType;
+  localStorage.setItem('fastenTracker', JSON.stringify(trackerData));
+  closeModal();
+  buildTracker();
+}
+
+// ===== WEIGHT =====
+function logWeight() {
+  const val = parseFloat(document.getElementById('weight-input').value);
+  if (isNaN(val) || val < 30 || val > 200) return;
+  const now = new Date();
+  const entry = { kg: val, date: now.toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit' }), ts: Date.now() };
+  weightData.unshift(entry);
+  localStorage.setItem('fastenWeight', JSON.stringify(weightData));
+  document.getElementById('weight-input').value = '';
+  renderWeight();
+  updateStats();
+}
+
+function renderWeight() {
+  const log = document.getElementById('weight-log');
+  if (weightData.length === 0) {
+    log.innerHTML = '<div class="weight-entry" style="justify-content:center; color:var(--muted); font-size:11px; padding:20px;">Noch keine Einträge</div>';
+    return;
+  }
+  log.innerHTML = weightData.map((e, i) => {
+    const prev = weightData[i+1];
+    let diffHtml = '';
+    if (prev) {
+      const diff = e.kg - prev.kg;
+      const sign = diff > 0 ? '+' : '';
+      diffHtml = `<span class="weight-diff ${diff <= 0 ? 'diff-down' : 'diff-up'}">${sign}${diff.toFixed(1)} kg</span>`;
+    }
+    return `<div class="weight-entry">
+      <span style="color:var(--muted)">${e.date}</span>
+      <span class="weight-kg">${e.kg.toFixed(1)} kg</span>
+      ${diffHtml}
+    </div>`;
+  }).join('');
+ 
+  // Progress
+  const current = weightData[0].kg;
+  const lost = 63 - current;
+  const pct = Math.max(0, Math.min(100, (lost / 5) * 100));
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = Math.round(pct) + '%';
+}
+
+function updateStats() {
+  // Current weight
+  const cw = weightData.length > 0 ? weightData[0].kg : 63.0;
+  document.getElementById('stat-weight').textContent = cw.toFixed(1);
+  const lost = (63 - cw).toFixed(1);
+  document.getElementById('stat-lost').textContent = lost > 0 ? lost : '0.0';
+ 
+  // OMAD count
+  const omadCount = Object.values(trackerData).filter(v => v === 'omad').length;
+  document.getElementById('stat-omad').textContent = omadCount;
+ 
+  // Current week
+  const daysSinceStart = Math.floor((today - START) / 86400000);
+  const weekNum = Math.min(10, Math.floor(daysSinceStart / 7) + 1);
+  document.getElementById('stat-week').textContent = `W${weekNum}`;
+}
+
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    const tabs = ['plan','tracker','weight','mindset'];
+    t.classList.toggle('active', tabs[i] === name);
+  });
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// Init
+buildTracker();
+renderWeight();
+updateStats();
+</script>
+
 </body>
 </html>
